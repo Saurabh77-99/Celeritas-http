@@ -1,0 +1,6 @@
+You’ve created a single-threaded, blocking TCP server that:
+Opens a listening socket on a specified port.
+Accepts incoming TCP connections (like browsers or curl).
+Responds with a hardcoded valid HTTP/1.1 response: "Hello World".
+Closes the connection.
+This is the first milestone: implementing the absolute basics of an HTTP server using only system calls.
