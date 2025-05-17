@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/HP/OneDrive/Desktop/hft-http-server
+CMAKE_SOURCE_DIR = /mnt/c/Users/HP/OneDrive/desktop/hft-http-server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/build
+CMAKE_BINARY_DIR = /mnt/c/Users/HP/OneDrive/desktop/hft-http-server/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/build/CMakeFiles /mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/HP/OneDrive/desktop/hft-http-server/build/CMakeFiles /mnt/c/Users/HP/OneDrive/desktop/hft-http-server/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/HP/OneDrive/desktop/hft-http-server/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -128,6 +128,30 @@ server: cmake_check_build_system
 server/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/build
 .PHONY : server/fast
+
+src/http.o: src/http.cpp.o
+.PHONY : src/http.o
+
+# target to build an object file
+src/http.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http.cpp.o
+.PHONY : src/http.cpp.o
+
+src/http.i: src/http.cpp.i
+.PHONY : src/http.i
+
+# target to preprocess a source file
+src/http.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http.cpp.i
+.PHONY : src/http.cpp.i
+
+src/http.s: src/http.cpp.s
+.PHONY : src/http.s
+
+# target to generate assembly for a file
+src/http.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/http.cpp.s
+.PHONY : src/http.cpp.s
 
 src/http_server.o: src/http_server.cpp.o
 .PHONY : src/http_server.o
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server"
+	@echo "... src/http.o"
+	@echo "... src/http.i"
+	@echo "... src/http.s"
 	@echo "... src/http_server.o"
 	@echo "... src/http_server.i"
 	@echo "... src/http_server.s"

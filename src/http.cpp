@@ -5,8 +5,8 @@
 using namespace std;
 
 HttpRequest parse_http_request(const string& raw_request){
-    istringstream stream(raw_request);
     HttpRequest req;
+    istringstream stream(raw_request);
     string line;
 
     if(getline(stream, line)) {

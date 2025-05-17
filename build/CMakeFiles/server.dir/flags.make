@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/include
+CXX_INCLUDES = -I/mnt/c/Users/HP/OneDrive/desktop/hft-http-server/include
 
 CXX_FLAGS = -std=gnu++17
 

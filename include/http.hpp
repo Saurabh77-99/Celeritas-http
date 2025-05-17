@@ -1,4 +1,4 @@
-#ifdef HTTP_HPP
+#ifndef HTTP_HPP
 #define HTTP_HPP
 
 #include <string>

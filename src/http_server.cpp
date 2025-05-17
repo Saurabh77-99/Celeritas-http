@@ -77,16 +77,13 @@ void handle_client(int client_fd){
     string raw_request(buffer, bytes_received);
     HttpRequest req = parse_http_request(raw_request);
 
-    string request(buffer);
-    istringstream request_stream(request);
-    string method, path;
-    request_stream >> method >> path;
+    cout << "[Request] " << req.method << " " << req.path <<endl;
 
     string response_body;
 
-    if (method == "GET" && path == "/hello") {
+    if (req.method == "GET" && req.path == "/hello") {
         response_body = "Hello Route!";
-    } else if (method == "GET" && path == "/status") {
+    } else if (req.method == "GET" && req.path == "/status") {
         response_body = "Server is up!";
     } else {
         response_body = "Not Found!";
