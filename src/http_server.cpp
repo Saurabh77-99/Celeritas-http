@@ -1,3 +1,4 @@
+#include <fstream>
 #include "http.hpp" 
 #include "http_server.hpp"
 #include <iostream>
@@ -79,20 +80,38 @@ void handle_client(int client_fd){
 
     cout << "[Request] " << req.method << " " << req.path <<endl;
 
+    int status_code = 200;
+    string status_text = "OK";
     string response_body;
 
-    if (req.method == "GET" && req.path == "/hello") {
+    if (req.method == "GET" && req.path.rfind("/static/", 0) == 0) {
+        string file_path = "static" + req.path.substr(7);
+        cout << "Serving file: " << file_path << endl;   // remove "/static" prefix
+        ifstream file(file_path);
+        if (file.good()) {
+            ostringstream ss;
+            ss << file.rdbuf();
+            response_body = ss.str();
+        } else {
+            response_body = "404 Not Found (static file)";
+            status_code = 404;
+            status_text = "Not Found";
+        }
+    }
+    else if (req.method == "GET" && req.path == "/hello") {
         response_body = "Hello Route!";
     } else if (req.method == "GET" && req.path == "/status") {
         response_body = "Server is up!";
     } else {
         response_body = "Not Found!";
+        status_code = 404;
+        status_text = "Not Found";
     }
 
     ostringstream response;
-    response << "HTTP/1.1 200 OK\r\n"
+    response << "HTTP/1.1 " << status_code << " " << status_text << "\r\n"
              << "Content-Length: " << response_body.length() << "\r\n"
-             << "Content-Type: text/plain\r\n\r\n"
+             << "Content-Type: text/html\r\n\r\n"
              << response_body;
 
     send(client_fd, response.str().c_str(), response.str().length(), 0);

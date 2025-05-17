@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/c/Users/HP/OneDrive/desktop/hft-http-server/src/http.cpp" "CMakeFiles/server.dir/src/http.cpp.o" "gcc" "CMakeFiles/server.dir/src/http.cpp.o.d"
-  "/mnt/c/Users/HP/OneDrive/desktop/hft-http-server/src/http_server.cpp" "CMakeFiles/server.dir/src/http_server.cpp.o" "gcc" "CMakeFiles/server.dir/src/http_server.cpp.o.d"
-  "/mnt/c/Users/HP/OneDrive/desktop/hft-http-server/src/main.cpp" "CMakeFiles/server.dir/src/main.cpp.o" "gcc" "CMakeFiles/server.dir/src/main.cpp.o.d"
+  "/mnt/c/Users/HP/onedrive/desktop/hft-http-server/src/http.cpp" "CMakeFiles/server.dir/src/http.cpp.o" "gcc" "CMakeFiles/server.dir/src/http.cpp.o.d"
+  "/mnt/c/Users/HP/onedrive/desktop/hft-http-server/src/http_server.cpp" "CMakeFiles/server.dir/src/http_server.cpp.o" "gcc" "CMakeFiles/server.dir/src/http_server.cpp.o.d"
+  "/mnt/c/Users/HP/onedrive/desktop/hft-http-server/src/main.cpp" "CMakeFiles/server.dir/src/main.cpp.o" "gcc" "CMakeFiles/server.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
