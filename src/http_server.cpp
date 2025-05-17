@@ -77,10 +77,10 @@ void handle_client(int client_fd){
     string raw_request(buffer, bytes_received);
     HttpRequest req = parse_http_request(raw_request);
 
-    // string request(buffer);
-    // istringstream request_stream(request);
-    // string method, path;
-    // request_stream >> method >> path;
+    string request(buffer);
+    istringstream request_stream(request);
+    string method, path;
+    request_stream >> method >> path;
 
     string response_body;
 
