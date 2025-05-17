@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/HP/OneDrive/desktop/hft-http-server
+# Install script for directory: /mnt/c/Users/HP/onedrive/desktop/hft-http-server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/HP/OneDrive/desktop/hft-http-server/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/c/Users/HP/onedrive/desktop/hft-http-server/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
