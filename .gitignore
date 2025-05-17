@@ -1,0 +1,21 @@
+# CMake build directory
+build/
+
+# Executables (if any are directly created in the root)
+*.exe
+*.out
+
+# Object files and other build artifacts
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.o
+*.obj
+*.d
+
+.vscode/
+
+logs/
+temp/
+data/
