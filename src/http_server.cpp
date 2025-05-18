@@ -1,6 +1,7 @@
 #include <fstream>
 #include "http.hpp" 
 #include "router.hpp"
+#include "mime.hpp"
 #include "http_server.hpp"
 #include <iostream>
 #include <netinet/in.h>
@@ -84,32 +85,39 @@ void handle_client(int client_fd){
     cout << "[Request] " << req.method << " " << req.path <<endl;
 
     string response_body;
+    int status_code = 200;
+    string status_text = "OK";
+    string content_type = "text/html"; 
+
     if (req.method == "GET" && req.path.rfind("/static/", 0) == 0) {
-        string file_path = "static" + req.path.substr(7);
+        // string file_path = "static/" + req.path.substr(8);
+        string file_path = "/mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/static/" + req.path.substr(8);
         cout << "Serving file: " << file_path << endl;
-        ifstream file(file_path);
+
+        ifstream file(file_path, ios::binary);
         if (file.good()) {
             ostringstream ss;
             ss << file.rdbuf();
             response_body = ss.str();
+            content_type = get_mime_type(file_path);
         } else {
             response_body = "404 Not Found (static file)";
+            status_code = 404;
+            status_text = "Not Found";
+            cerr << "❌ File not found: " << file_path << endl;
         }
     } else {
         response_body = router.route(req);
-    }
-
-    int status_code = 200;
-    string status_text = "OK";
-    if (response_body == "404 Not Found!") {
-        status_code = 404;
-        status_text = "Not Found";
+        if (response_body == "404 Not Found!") {
+            status_code = 404;
+            status_text = "Not Found";
+        }
     }
 
     ostringstream response;
     response << "HTTP/1.1 " << status_code << " " << status_text << "\r\n"
              << "Content-Length: " << response_body.length() << "\r\n"
-             << "Content-Type: text/html\r\n\r\n"
+             << "Content-Type: " << content_type << "\r\n\r\n"
              << response_body;
 
     send(client_fd, response.str().c_str(), response.str().length(), 0);
