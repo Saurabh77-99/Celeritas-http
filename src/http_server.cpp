@@ -86,7 +86,7 @@ void handle_client(int client_fd){
 
     if (req.method == "GET" && req.path.rfind("/static/", 0) == 0) {
         string file_path = "static" + req.path.substr(7);
-        cout << "Serving file: " << file_path << endl;   // remove "/static" prefix
+        cout << "Serving file: " << file_path << endl;
         ifstream file(file_path);
         if (file.good()) {
             ostringstream ss;
@@ -102,6 +102,8 @@ void handle_client(int client_fd){
         response_body = "Hello Route!";
     } else if (req.method == "GET" && req.path == "/status") {
         response_body = "Server is up!";
+    } else if (req.method == "POST" && req.path == "/echo") {
+        response_body = "Echo from POST: " + req.body;
     } else {
         response_body = "Not Found!";
         status_code = 404;

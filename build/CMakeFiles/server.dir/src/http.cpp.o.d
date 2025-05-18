@@ -1,7 +1,7 @@
 CMakeFiles/server.dir/src/http.cpp.o: \
- /mnt/c/Users/HP/onedrive/desktop/hft-http-server/src/http.cpp \
+ /mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/src/http.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/HP/onedrive/desktop/hft-http-server/include/http.hpp \
+ /mnt/c/Users/HP/OneDrive/Desktop/hft-http-server/include/http.hpp \
  /usr/include/c++/13/string /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
