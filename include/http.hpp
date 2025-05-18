@@ -1,5 +1,4 @@
-#ifndef HTTP_HPP
-#define HTTP_HPP
+#pragma once
 
 #include <string>
 #include <unordered_map>
@@ -14,5 +13,3 @@ struct HttpRequest{
 };
 
 HttpRequest parse_http_request(const string& raw_request);
-
-#endif

@@ -1,5 +1,6 @@
 #include <fstream>
 #include "http.hpp" 
+#include "router.hpp"
 #include "http_server.hpp"
 #include <iostream>
 #include <netinet/in.h>
@@ -13,6 +14,8 @@
 #include <vector>
 #include <functional>
 using namespace std;
+
+Router router; 
 
 class ThreadPool {
 private:
@@ -80,10 +83,7 @@ void handle_client(int client_fd){
 
     cout << "[Request] " << req.method << " " << req.path <<endl;
 
-    int status_code = 200;
-    string status_text = "OK";
     string response_body;
-
     if (req.method == "GET" && req.path.rfind("/static/", 0) == 0) {
         string file_path = "static" + req.path.substr(7);
         cout << "Serving file: " << file_path << endl;
@@ -94,18 +94,14 @@ void handle_client(int client_fd){
             response_body = ss.str();
         } else {
             response_body = "404 Not Found (static file)";
-            status_code = 404;
-            status_text = "Not Found";
         }
-    }
-    else if (req.method == "GET" && req.path == "/hello") {
-        response_body = "Hello Route!";
-    } else if (req.method == "GET" && req.path == "/status") {
-        response_body = "Server is up!";
-    } else if (req.method == "POST" && req.path == "/echo") {
-        response_body = "Echo from POST: " + req.body;
     } else {
-        response_body = "Not Found!";
+        response_body = router.route(req);
+    }
+
+    int status_code = 200;
+    string status_text = "OK";
+    if (response_body == "404 Not Found!") {
         status_code = 404;
         status_text = "Not Found";
     }
@@ -147,6 +143,18 @@ void start_server(int port){
     cout << "Server listening on port " << port << endl;
 
     ThreadPool pool(4);  // create thread pool with 4 workers
+
+    router.add_route("GET", "/hello", [](const HttpRequest& req) {
+        return "Hello Route!";
+    });
+
+    router.add_route("GET", "/status", [](const HttpRequest& req) {
+        return "Server is up!";
+    });
+
+    router.add_route("POST", "/echo", [](const HttpRequest& req) {
+        return "Echo from POST: " + req.body;
+    });
 
     while (true){
         sockaddr_in client_addr{};

@@ -9,4 +9,5 @@ add_executable(server
     src/main.cpp
     src/http_server.cpp
     src/http.cpp
+    src/router.cpp
 )
